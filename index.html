@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AquaPure - Pure Drinking Water Delivered</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="bubble-container" id="bubbleContainer"></div>
+
+  <header>
+    <div class="navbar">
+      <div class="logo" onclick="navigateTo('home')">
+        <i class="fa-solid fa-droplet"></i>
+        <span>AquaPure</span>
+      </div>
+
+      <ul class="nav-links">
+        <li><button class="nav-link active" data-page="home" onclick="navigateTo('home')">Home</button></li>
+        <li><button class="nav-link" data-page="order" onclick="navigateTo('order')">Order</button></li>
+        <li><button class="nav-link" data-page="subscription" onclick="navigateTo('subscription')">Subscription</button></li>
+        <li><button class="nav-link" data-page="track" onclick="navigateTo('track')">Track</button></li>
+        <li><button class="nav-link" data-page="blog" onclick="navigateTo('blog')">Blog</button></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggleBtn" title="Toggle Theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <div class="user-profile-badge" id="userProfileBadge">
+          <i class="fa-solid fa-circle-user"></i>
+          <span id="loggedInUserName">User</span>
+          <button class="btn-logout" onclick="handleLogout()" title="Logout">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+          </button>
+        </div>
+
+        <button class="auth-btn" id="openAuthModalBtn" title="User / Admin Portal">
+          <i class="fa-regular fa-user"></i>
+        </button>
+
+        <button class="cart-btn" id="openCartBtn" title="View Cart">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="cart-badge" id="cartCount">0</span>
+        </button>
+
+        <button class="mobile-toggle" id="mobileMenuBtn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <button onclick="navigateTo('home'); toggleMobileMenu();">Home</button>
+      <button onclick="navigateTo('order'); toggleMobileMenu();">Order</button>
+      <button onclick="navigateTo('subscription'); toggleMobileMenu();">Subscription</button>
+      <button onclick="navigateTo('track'); toggleMobileMenu();">Track</button>
+      <button onclick="navigateTo('blog'); toggleMobileMenu();">Blog</button>
+    </div>
+  </header>
+
+  <!-- 1. HOME VIEW -->
+  <main id="page-home" class="page-view active">
+    <div class="hero-wrapper">
+      <section class="hero">
+        <div class="hero-text">
+          <div class="badge-status">
+            <span></span> Delivering across Nagpur in 2-4 Hours
+          </div>
+          <h1>Pure Drinking <br/>Water <span>Delivered to Your Doorstep</span></h1>
+          <p>Safe, hygienic, and affordable RO mineral water can delivery for homes and offices across Dattawadi, Nagpur. Refreshing purity in every single drop.</p>
+          
+          <div class="hero-actions">
+            <button onclick="navigateTo('order')" class="btn btn-primary">Order Now <i class="fa-solid fa-arrow-right"></i></button>
+            <a href="https://wa.me/919201767987?text=Hi%20AquaPure,%20I%20would%20like%20to%20order%20drinking%20water." target="_blank" class="btn btn-whatsapp">
+              <i class="fa-brands fa-whatsapp"></i> WhatsApp Order
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-image-box">
+          <img 
+            id="homeHeroImg"
+            src="water.jpg" 
+            alt="Glass of pure drinking water"
+            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&auto=format&fit=crop';" 
+          />
+          <div class="floating-card">
+            <i class="fa-solid fa-circle-check"></i>
+            <div style="text-align: left;">
+              <h5 style="margin: 0; font-size: 0.95rem;">100% Pure & Mineral Rich</h5>
+              <span style="font-size: 0.78rem; color: var(--text-muted);">8-Stage RO + Copper + UV Disinfection</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Feature Pillars -->
+    <section class="section">
+      <div class="section-title">
+        <span>TRUST & PURITY</span>
+        <h2>Why Choose AquaPure?</h2>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-filter"></i></div>
+          <h3>8-Stage Purification</h3>
+          <p>Advanced RO, UV sterilization and essential mineral replenishment for crisp, healthy water.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-truck-fast"></i></div>
+          <h3>Express Dattawadi Delivery</h3>
+          <p>Doorstep delivery within 2 to 4 hours from our decentralized hubs across Nagpur.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-bottle-water"></i></div>
+          <h3>Hygiene Sanitized Cans</h3>
+          <p>Every food-grade 20L can undergoes automated 4-step ultrasonic cleaning before every refill.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-wallet"></i></div>
+          <h3>Affordable Plans</h3>
+          <p>Flexible daily, alternate, or monthly recurring plans with zero security hassle and free dispenser stands.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT INFO SECTION (Updated with rumanimahurkar668@gmail.com & 9201767987) -->
+    <section class="section" style="padding-top: 1rem;">
+      <div class="section-title">
+        <span>GET IN TOUCH</span>
+        <h2>Need Help or Quick Delivery?</h2>
+        <p style="color: var(--text-muted); margin-top: 0.5rem;">Have questions about our water or want instant delivery in Dattawadi, Nagpur? Contact us directly.</p>
+      </div>
+
+      <div class="contact-cards-grid">
+        <!-- Call Card -->
+        <div class="contact-info-card">
+          <div class="contact-icon-wrapper"><i class="fa-solid fa-phone"></i></div>
+          <h4>Call Directly</h4>
+          <p>Available Mon-Sun, 7 AM to 9 PM</p>
+          <button class="contact-link-btn" onclick="executeSmartCall('9201767987')">
+            <i class="fa-solid fa-phone-volume"></i> +91 9201767987
+          </button>
+        </div>
+
+        <!-- WhatsApp Card -->
+        <div class="contact-info-card">
+          <div class="contact-icon-wrapper" style="color: #22c55e; background: rgba(34, 197, 94, 0.1);"><i class="fa-brands fa-whatsapp"></i></div>
+          <h4>WhatsApp Chat</h4>
+          <p>Instant booking & live support</p>
+          <a href="https://wa.me/919201767987?text=Hi%20AquaPure,%20I%20have%20an%20inquiry." target="_blank" class="contact-link-btn btn-wa">
+            <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+        </div>
+
+        <!-- Email Card -->
+        <div class="contact-info-card">
+          <div class="contact-icon-wrapper"><i class="fa-solid fa-envelope"></i></div>
+          <h4>Email Us</h4>
+          <p>For corporate bulk & inquiries</p>
+          <button class="contact-link-btn" onclick="executeSmartEmail('rumanimahurkar668@gmail.com')">
+            <i class="fa-regular fa-envelope"></i> rumanimahurkar668@gmail.com
+          </button>
+        </div>
+
+        <!-- Hub Location Card -->
+        <div class="contact-info-card">
+          <div class="contact-icon-wrapper"><i class="fa-solid fa-location-dot"></i></div>
+          <h4>Main Hub</h4>
+          <p>Dattawadi, Nagpur, Maharashtra</p>
+          <span style="font-weight: 600; color: var(--primary-color);">Fast 2-4 Hr Delivery</span>
+        </div>
+      </div>
+
+      <!-- SEND MESSAGE SECTION -->
+      <div class="send-msg-container">
+        <div class="send-msg-header">
+          <h3><i class="fa-regular fa-paper-plane" style="color: var(--primary-color); margin-right: 0.5rem;"></i> Send Us a Message</h3>
+          <p>Have an enquiry, corporate bulk order requirement, or feedback? Send us a quick note below.</p>
+        </div>
+
+        <form onsubmit="handleSendMessage(event)">
+          <div class="form-grid">
+            <div>
+              <label class="form-label">Your Name *</label>
+              <input type="text" id="msgName" class="form-control" placeholder="Enter your full name" required />
+            </div>
+
+            <div>
+              <label class="form-label">Phone or WhatsApp No. *</label>
+              <input type="tel" id="msgPhone" class="form-control" placeholder="e.g. 9201767987" required />
+            </div>
+
+            <div class="form-group-full">
+              <label class="form-label">Subject / Purpose</label>
+              <input type="text" id="msgSubject" class="form-control" placeholder="e.g. New Connection Inquiry / Corporate Supply" />
+            </div>
+
+            <div class="form-group-full">
+              <label class="form-label">Your Message *</label>
+              <textarea id="msgBody" class="form-control" rows="4" placeholder="Write your message or inquiry details here..." required></textarea>
+            </div>
+
+            <div class="form-group-full" style="display:flex; gap:1rem; flex-wrap:wrap;">
+              <button type="submit" class="btn btn-whatsapp" style="flex:1; justify-content: center; padding: 0.95rem;">
+                <i class="fa-brands fa-whatsapp"></i> Send via WhatsApp
+              </button>
+              <button type="button" class="btn btn-primary" onclick="sendViaDirectWebEmail()" style="flex:1; justify-content: center; padding: 0.95rem;">
+                <i class="fa-regular fa-envelope"></i> Send via Gmail
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="section" style="padding-top: 1rem;">
+      <div class="section-title">
+        <span>FREQUENTLY ASKED QUESTIONS</span>
+        <h2>Questions & Answers</h2>
+        <p style="color: var(--text-muted); margin-top: 0.5rem;">Everything you need to know about our drinking water and delivery process.</p>
+      </div>
+
+      <div class="faq-container">
+        <div class="faq-item active">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>What is the water purification process of AquaPure?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            AquaPure employs an advanced 8-stage purification cycle comprising sediment filtration, activated carbon absorption, reverse osmosis (RO), ultraviolet (UV) sterilization, ozonization, and copper + mineral balancing to ensure crisp taste and maximum safety.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>How fast can I get delivery in Dattawadi, Nagpur?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            We deliver within 2 to 4 hours of placing an instant order. For subscription customers, delivery happens automatically in your selected morning (7 AM - 10 AM) or evening time slot.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Do I have to pay any security deposit for 20L cans?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            No! On monthly subscription plans, we provide cans with zero deposit hassle. You simply return the empty can upon delivery of the fresh sanitized refill can.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Can I pause or reschedule my subscription if I am travelling?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            Yes, absolutely. Just WhatsApp us on +91 9201767987 at least 12 hours prior, and we will pause your deliveries. Your plan validity will automatically extend by the paused days.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 2. ORDER VIEW -->
+  <main id="page-order" class="page-view">
+    <section class="section">
+      <div class="section-title">
+        <span>INSTANT WATER ORDER</span>
+        <h2>Select Your Water Can</h2>
+        <p style="color: var(--text-muted); margin-top: 0.5rem;">Add items to your cart or fill in your delivery details directly below.</p>
+      </div>
+
+      <div class="products-grid">
+        <div class="product-card">
+          <img class="product-img" src="https://images.unsplash.com/photo-1527661591475-527312dd65f5?w=600&auto=format&fit=crop" alt="20L Standard Can" />
+          <div class="product-details">
+            <h3>20L RO Water Can</h3>
+            <p>Pure multi-stage RO water in sealed food-grade can. Delivered within 2-3 hours in Nagpur.</p>
+            <div class="product-bottom">
+              <div class="price">₹40 <span>/ can</span></div>
+              <button class="btn-add-cart" onclick="addToCart('20L RO Water Can', 40)">
+                <i class="fa-solid fa-cart-plus"></i> Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <img class="product-img" src="https://images.unsplash.com/photo-1560023907-5f339617ea30?w=600&auto=format&fit=crop" alt="20L Alkaline Mineral Can" />
+          <div class="product-details">
+            <h3>20L Alkaline Mineral Can</h3>
+            <p>Enriched with essential minerals & copper for better metabolism and daily immunity.</p>
+            <div class="product-bottom">
+              <div class="price">₹65 <span>/ can</span></div>
+              <button class="btn-add-cart" onclick="addToCart('20L Alkaline Mineral Can', 65)">
+                <i class="fa-solid fa-cart-plus"></i> Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <img class="product-img" src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=600&auto=format&fit=crop" alt="Hot & Cold Dispenser" />
+          <div class="product-details">
+            <h3>Water Dispenser Machine</h3>
+            <p>Tabletop durable dispenser stand with dual taps for effortless kitchen and office use.</p>
+            <div class="product-bottom">
+              <div class="price">₹499 <span>/ unit</span></div>
+              <button class="btn-add-cart" onclick="addToCart('Water Dispenser Machine', 499)">
+                <i class="fa-solid fa-cart-plus"></i> Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DELIVERY & CONTACT DETAILS FORM -->
+      <div class="delivery-form-box" id="orderDeliveryForm">
+        <h3><i class="fa-solid fa-truck-ramp-box" style="color: var(--primary-color); margin-right: 0.5rem;"></i> Delivery & Contact Details</h3>
+        <p>Please enter your contact information and Nagpur delivery location to place your order directly.</p>
+
+        <form onsubmit="handleOrderSubmit(event)">
+          <div class="form-grid">
+            <div>
+              <label class="form-label">Full Name *</label>
+              <input type="text" id="orderCustName" class="form-control" placeholder="e.g. Rumani Mahurkar" required />
+            </div>
+
+            <div>
+              <label class="form-label">WhatsApp Contact Number *</label>
+              <input type="tel" id="orderCustPhone" class="form-control" placeholder="e.g. 9201767987" required />
+            </div>
+
+            <div>
+              <label class="form-label">Selected Item *</label>
+              <input type="text" id="orderSelectedItem" class="form-control" value="20L RO Water Can (₹40)" readonly style="font-weight: 600; background: rgba(2, 132, 199, 0.08); color: var(--primary-color);" />
+            </div>
+
+            <div>
+              <label class="form-label">Quantity</label>
+              <select id="orderQuantity" class="form-control">
+                <option value="1">1 Can / Unit</option>
+                <option value="2">2 Cans / Units</option>
+                <option value="3">3 Cans / Units</option>
+                <option value="5">5 Cans / Units</option>
+                <option value="10">10 Cans (Bulk)</option>
+              </select>
+            </div>
+
+            <div class="form-group-full">
+              <label class="form-label">Complete Delivery Address & Landmark *</label>
+              <input type="text" id="orderCustAddress" class="form-control" placeholder="Flat No., Building Name, Street / Dattawadi, Nagpur" required />
+            </div>
+
+            <div>
+              <label class="form-label">Preferred Delivery Time</label>
+              <select id="orderCustSlot" class="form-control">
+                <option value="Immediate Express (Within 2 Hours)">Immediate Express (Within 2 Hours)</option>
+                <option value="Morning (7:00 AM - 10:00 AM)">Morning (7:00 AM - 10:00 AM)</option>
+                <option value="Afternoon (12:00 PM - 3:00 PM)">Afternoon (12:00 PM - 3:00 PM)</option>
+                <option value="Evening (5:00 PM - 8:00 PM)">Evening (5:00 PM - 8:00 PM)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="form-label">Payment Preference</label>
+              <select id="orderPaymentMode" class="form-control">
+                <option value="UPI on Delivery (GPay / PhonePe / Paytm)">UPI on Delivery (GPay / PhonePe / Paytm)</option>
+                <option value="Cash on Delivery (COD)">Cash on Delivery (COD)</option>
+              </select>
+            </div>
+
+            <div class="form-group-full" style="margin-top: 1rem;">
+              <button type="submit" class="btn btn-whatsapp" style="width: 100%; justify-content: center; padding: 1rem; font-size: 1.05rem;">
+                <i class="fa-brands fa-whatsapp"></i> Confirm & Order via WhatsApp
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- 3. SUBSCRIPTION VIEW -->
+  <main id="page-subscription" class="page-view">
+    <section class="section">
+      <div class="section-title">
+        <span>PRICING PLANS</span>
+        <h2>Simple, Transparent Pricing</h2>
+        <p style="color: var(--text-muted); margin-top: 0.5rem;">Choose the water plan that fits your family or commercial setup.</p>
+      </div>
+
+      <div class="billing-toggle-wrapper">
+        <span id="monthlyLabel" style="color: var(--primary-color);">Monthly</span>
+        <label class="switch">
+          <input type="checkbox" id="billingToggle" onchange="toggleBillingCycle()">
+          <span class="slider"></span>
+        </label>
+        <span id="yearlyLabel" style="color: var(--text-muted);">Yearly <span class="discount-pill">Save 20%</span></span>
+      </div>
+
+      <div class="pricing-cards-container">
+        <div class="pricing-card">
+          <h3>Alternate Days</h3>
+          <p class="plan-desc">Perfect for couples and small households (15 Cans/month).</p>
+          <div class="pricing-price">
+            <span style="font-size:1.6rem; font-weight:700;">₹</span><span id="priceAlternate" style="font-size:2.8rem; font-weight:800; color:var(--text-color);">600</span>
+            <span class="cycle-text">/ month</span>
+          </div>
+          <ul class="pricing-features">
+            <li><i class="fa-solid fa-circle-check"></i> 15 Cans (20L RO Purified)</li>
+            <li><i class="fa-solid fa-circle-check"></i> Delivered every alternate morning</li>
+            <li><i class="fa-solid fa-circle-check"></i> Free doorstep delivery in Nagpur</li>
+            <li><i class="fa-solid fa-circle-check"></i> Pause / Resume anytime</li>
+            <li><i class="fa-solid fa-circle-check"></i> Free bottle stand included</li>
+          </ul>
+          <button class="btn-plan" onclick="selectPlanForBooking('Alternate Days Plan (15 Cans)', 600)">Choose Plan</button>
+        </div>
+
+        <div class="pricing-card popular">
+          <div class="popular-tag">MOST POPULAR</div>
+          <h3>Daily Family Plan</h3>
+          <p class="plan-desc">Our most loved daily drinking water subscription for families (30 Cans).</p>
+          <div class="pricing-price">
+            <span style="font-size:1.6rem; font-weight:700; color:var(--primary-color);">₹</span><span id="priceFamily" style="font-size:2.8rem; font-weight:800; color:var(--primary-color);">1,150</span>
+            <span class="cycle-text">/ month</span>
+          </div>
+          <ul class="pricing-features">
+            <li><i class="fa-solid fa-circle-check"></i> 30 Cans (1 can every morning)</li>
+            <li><i class="fa-solid fa-circle-check"></i> 7 AM - 9 AM Priority Morning Slot</li>
+            <li><i class="fa-solid fa-circle-check"></i> Food-grade ultrasonic sanitized cans</li>
+            <li><i class="fa-solid fa-circle-check"></i> Instant WhatsApp customer support</li>
+            <li><i class="fa-solid fa-circle-check"></i> Free dispenser stand & tap valve</li>
+          </ul>
+          <button class="btn-plan" onclick="selectPlanForBooking('Daily Family Plan (30 Cans)', 1150)">Choose Plan</button>
+        </div>
+
+        <div class="pricing-card">
+          <h3>Office / Enterprise</h3>
+          <p class="plan-desc">Best for corporate offices, clinics, institutes & cafes (60 Cans).</p>
+          <div class="pricing-price">
+            <span style="font-size:1.6rem; font-weight:700;">₹</span><span id="priceCorporate" style="font-size:2.8rem; font-weight:800; color:var(--text-color);">2,200</span>
+            <span class="cycle-text">/ month</span>
+          </div>
+          <ul class="pricing-features">
+            <li><i class="fa-solid fa-circle-check"></i> 60 Cans (2 cans daily)</li>
+            <li><i class="fa-solid fa-circle-check"></i> GST invoice billing available</li>
+            <li><i class="fa-solid fa-circle-check"></i> Dedicated delivery runner</li>
+            <li><i class="fa-solid fa-circle-check"></i> Multiple floor delivery included</li>
+            <li><i class="fa-solid fa-circle-check"></i> Free periodic dispenser cleaning</li>
+          </ul>
+          <button class="btn-plan" onclick="selectPlanForBooking('Office / Enterprise Plan (60 Cans)', 2200)">Choose Plan</button>
+        </div>
+      </div>
+
+      <!-- Subscription Details Form -->
+      <div class="delivery-form-box" id="subscriptionDetailsForm">
+        <h3><i class="fa-solid fa-address-card" style="color: var(--primary-color); margin-right: 0.5rem;"></i> Delivery Details & Booking</h3>
+        <p>Fill out your Nagpur delivery address and contact information below to activate your subscription.</p>
+
+        <form onsubmit="handleSubscriptionSubmit(event)">
+          <div class="form-grid">
+            <div>
+              <label class="form-label">Full Name *</label>
+              <input type="text" id="subName" class="form-control" placeholder="e.g. Rumani Mahurkar" required />
+            </div>
+
+            <div>
+              <label class="form-label">WhatsApp Contact Number *</label>
+              <input type="tel" id="subPhone" class="form-control" placeholder="e.g. 9201767987" required />
+            </div>
+
+            <div>
+              <label class="form-label">Email Address</label>
+              <input type="email" id="subEmail" class="form-control" placeholder="e.g. rumanimahurkar668@gmail.com" />
+            </div>
+
+            <div>
+              <label class="form-label">Selected Plan *</label>
+              <input type="text" id="subSelectedPlan" class="form-control" value="Daily Family Plan (30 Cans) - ₹1150/mo" readonly style="font-weight: 600; background: rgba(2, 132, 199, 0.08); color: var(--primary-color);" />
+            </div>
+
+            <div class="form-group-full">
+              <label class="form-label">Complete Delivery Address & Landmark *</label>
+              <input type="text" id="subAddress" class="form-control" placeholder="Flat No., Building Name, Street / Dattawadi, Nagpur" required />
+            </div>
+
+            <div>
+              <label class="form-label">Preferred Delivery Time Slot</label>
+              <select id="subSlot" class="form-control">
+                <option value="Morning (7:00 AM - 10:00 AM)">Morning (7:00 AM - 10:00 AM)</option>
+                <option value="Afternoon (12:00 PM - 3:00 PM)">Afternoon (12:00 PM - 3:00 PM)</option>
+                <option value="Evening (5:00 PM - 8:00 PM)">Evening (5:00 PM - 8:00 PM)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="form-label">Start Date</label>
+              <input type="date" id="subStartDate" class="form-control" required />
+            </div>
+
+            <div class="form-group-full" style="margin-top: 1rem;">
+              <button type="submit" class="btn btn-whatsapp" style="width: 100%; justify-content: center; padding: 1rem; font-size: 1.05rem;">
+                <i class="fa-brands fa-whatsapp"></i> Confirm & Book via WhatsApp
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- 4. TRACK VIEW -->
+  <main id="page-track" class="page-view">
+    <section class="section">
+      <div class="section-title">
+        <span>LIVE ORDER TRACKING</span>
+        <h2>Track Your Water Delivery</h2>
+        <p style="color: var(--text-muted); margin-top: 0.5rem;">Enter your Order ID (e.g. AQP-1092) or registered mobile number to see real-time updates.</p>
+      </div>
+
+      <div class="track-card">
+        <i class="fa-solid fa-truck-fast" style="font-size: 3.2rem; color: var(--primary-color); margin-bottom: 0.8rem;"></i>
+        <h3 style="font-size: 1.4rem;">Where is my AquaPure Delivery?</h3>
+
+        <div class="track-form">
+          <input type="text" id="trackInput" placeholder="Enter Order ID (e.g. AQP-8492) or Mobile No." />
+          <button class="btn btn-primary" onclick="trackOrder()">Track Now</button>
+        </div>
+
+        <div id="trackResultBox" style="display: none; animation: fadeIn 0.4s ease;">
+          <div class="tracker-steps-wrapper">
+            <div class="tracker-progress-line" id="trackerProgressLine"></div>
+
+            <div class="track-step completed" id="step1">
+              <div class="step-icon"><i class="fa-solid fa-check"></i></div>
+              <div class="step-label">Order Placed</div>
+              <div class="step-time">Confirmed</div>
+            </div>
+
+            <div class="track-step completed" id="step2">
+              <div class="step-icon"><i class="fa-solid fa-filter"></i></div>
+              <div class="step-label">Purified & Sealed</div>
+              <div class="step-time">Sanitized</div>
+            </div>
+
+            <div class="track-step active" id="step3">
+              <div class="step-icon"><i class="fa-solid fa-truck-arrow-right"></i></div>
+              <div class="step-label">Out for Delivery</div>
+              <div class="step-time">On the way</div>
+            </div>
+
+            <div class="track-step" id="step4">
+              <div class="step-icon"><i class="fa-solid fa-house-chimney"></i></div>
+              <div class="step-label">Delivered</div>
+              <div class="step-time">Pending</div>
+            </div>
+          </div>
+
+          <div class="order-status-details">
+            <div class="status-row">
+              <span style="color: var(--text-muted);">Tracking Order ID:</span>
+              <strong id="trackDisplayId" style="color: var(--primary-color);">AQP-8492</strong>
+            </div>
+            <div class="status-row">
+              <span style="color: var(--text-muted);">Current Location:</span>
+              <span style="color: var(--secondary-color); font-weight: 600;"><i class="fa-solid fa-location-dot"></i> Near Dattawadi, Nagpur</span>
+            </div>
+            <div class="status-row">
+              <span style="color: var(--text-muted);">Estimated Delivery (ETA):</span>
+              <span style="font-weight: 700;">~25 - 35 Minutes</span>
+            </div>
+            <div class="status-row">
+              <span style="color: var(--text-muted);">Delivery Boy:</span>
+              <span><strong>Ramesh Kumar</strong> (Nagpur Hub)</span>
+            </div>
+            <div class="status-row" style="margin-bottom:0;">
+              <span style="color: var(--text-muted);">Delivery Agent Phone:</span>
+              <a href="javascript:void(0)" onclick="executeSmartCall('9201767987')" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">+91 9201767987</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 5. BLOG VIEW -->
+  <main id="page-blog" class="page-view">
+    <section class="section">
+      <div class="section-title">
+        <span>HEALTH & JOURNAL</span>
+        <h2>AquaPure Daily Blogs</h2>
+      </div>
+
+      <div class="blog-grid">
+        <div class="blog-card">
+          <img 
+            src="https://images.unsplash.com/photo-1548839140-29a749e1bc4e?w=800&auto=format&fit=crop" 
+            alt="Water TDS Health Guide" 
+            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&auto=format&fit=crop';"
+          />
+          <div class="blog-content">
+            <span class="date">October 12, 2026 • Health Guide</span>
+            <h3>What is Ideal TDS for Drinking Water in Nagpur?</h3>
+            <p>Discover why maintaining a TDS between 80 to 150 is optimal for essential minerals and daily wellbeing.</p>
+          </div>
+        </div>
+
+        <div class="blog-card">
+          <img src="https://images.unsplash.com/photo-1543362906-acfc16c67564?w=600&auto=format&fit=crop" alt="Hygiene water can" />
+          <div class="blog-content">
+            <span class="date">September 28, 2026 • Hygiene</span>
+            <h3>How We 4-Step Sanitize Our 20L Water Cans</h3>
+            <p>A step-by-step tour inside our high-pressure touchless rinsing and UV sterilization pipeline.</p>
+          </div>
+        </div>
+
+        <div class="blog-card">
+          <img src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=600&auto=format&fit=crop" alt="Hydration Tips" />
+          <div class="blog-content">
+            <span class="date">September 15, 2026 • Lifestyle</span>
+            <h3>5 Simple Ways to Stay Properly Hydrated All Day</h3>
+            <p>Actionable hydration habits for working professionals and families during Nagpur's hot months.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="logo" style="margin-bottom: 1rem;">
+          <i class="fa-solid fa-droplet"></i>
+          <span>AquaPure</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+          Nagpur's reliable and hygienic RO mineral drinking water delivery service. Providing tested purity and zero-hassle subscriptions straight to your doorstep.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><button onclick="navigateTo('home')">Home</button></li>
+          <li><button onclick="navigateTo('order')">Order Can</button></li>
+          <li><button onclick="navigateTo('subscription')">Monthly Plans</button></li>
+          <li><button onclick="navigateTo('track')">Track Order</button></li>
+          <li><button onclick="navigateTo('blog')">Water Blogs</button></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Nagpur Service Hubs</h4>
+        <ul class="footer-links">
+          <li><button onclick="navigateTo('home')">Dattawadi</button></li>
+          <li><button onclick="navigateTo('home')">Sitabuldi & Civil Lines</button></li>
+          <li><button onclick="navigateTo('home')">Dharampeth & Ram Nagar</button></li>
+          <li><button onclick="navigateTo('home')">Pratap Nagar & Manish Nagar</button></li>
+          <li><button onclick="navigateTo('home')">Wardhaman Nagar</button></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact & Support</h4>
+        <div class="contact-item-box">
+          <i class="fa-solid fa-phone"></i>
+          <div><a href="javascript:void(0)" style="color:inherit; text-decoration:none;" onclick="executeSmartCall('9201767987')">+91 9201767987</a></div>
+        </div>
+        <div class="contact-item-box">
+          <i class="fa-brands fa-whatsapp"></i>
+          <div><a href="https://wa.me/919201767987" target="_blank" style="color:inherit; text-decoration:none;">+91 9201767987</a></div>
+        </div>
+        <div class="contact-item-box">
+          <i class="fa-solid fa-envelope"></i>
+          <div><a href="javascript:void(0)" style="color:inherit; text-decoration:none;" onclick="executeSmartEmail('rumanimahurkar668@gmail.com')">rumanimahurkar668@gmail.com</a></div>
+        </div>
+        <div class="contact-item-box">
+          <i class="fa-solid fa-location-dot"></i>
+          <div>Dattawadi, Nagpur, Maharashtra</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2026 AquaPure Nagpur. All rights reserved. Pure water for pure life.
+    </div>
+  </footer>
+
+  <a href="https://wa.me/919201767987?text=Hi%20AquaPure,%20I%20want%20to%20order%20water." class="floating-whatsapp-btn" target="_blank" title="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- Sliding Cart Drawer -->
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3 style="display:flex; align-items:center; gap:0.5rem;"><i class="fa-solid fa-cart-shopping" style="color:var(--primary-color);"></i> Your Cart</h3>
+      <button onclick="toggleCart()" style="background: none; border: none; font-size: 1.3rem; cursor: pointer; color: var(--text-color);"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div class="cart-items" id="cartItemsContainer"></div>
+
+    <div class="cart-footer">
+      <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem;">
+        <span>Total:</span>
+        <span id="cartTotalDisplay">₹0</span>
+      </div>
+      <button class="btn btn-whatsapp" style="width: 100%; justify-content: center;" onclick="checkoutWhatsApp()">
+        <i class="fa-brands fa-whatsapp"></i> Order via WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <!-- ORDER SUCCESS / CONFIRMATION MODAL WITH UNIQUE ORDER ID -->
+  <div class="modal-overlay" id="orderSuccessModal">
+    <div class="modal-box" style="text-align: center;">
+      <button class="close-modal" onclick="closeOrderSuccessModal()"><i class="fa-solid fa-xmark"></i></button>
+      <div style="width:70px; height:70px; border-radius:50%; background:rgba(34,197,94,0.15); color:var(--secondary-color); display:flex; align-items:center; justify-content:center; font-size:2.2rem; margin:0 auto 1.2rem auto;">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.3rem;">Order Placed Successfully!</h3>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.2rem;">Aapka drinking water order receive ho gaya hai.</p>
+
+      <div style="background:var(--bg-color); border:1px dashed var(--primary-color); border-radius:14px; padding:1.2rem; margin-bottom:1.5rem;">
+        <span style="font-size: 0.85rem; color: var(--text-muted); display: block;">Aapka Unique Order ID:</span>
+        <strong id="generatedOrderIdDisplay" style="font-size: 1.8rem; color: var(--primary-color); letter-spacing: 1px;">AQP-0000</strong>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.3rem;">(Is Order ID se aap real-time delivery track kar sakte hain)</p>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:0.8rem;">
+        <button class="btn btn-primary" onclick="proceedToTrackFromModal()" style="justify-content: center; width:100%;">
+          <i class="fa-solid fa-truck-fast"></i> Track This Order Now
+        </button>
+        <button class="btn" onclick="closeOrderSuccessModal()" style="background:transparent; border:1px solid var(--border-color); color:var(--text-color); justify-content: center; width:100%;">
+          Continue Browsing
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign In / Sign Up Modal -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal-box">
+      <button class="close-modal" onclick="closeAuthModal()"><i class="fa-solid fa-xmark"></i></button>
+
+      <div class="modal-tabs">
+        <div class="modal-tab active" id="tabUser" onclick="switchAuthTab('user')">User Login</div>
+        <div class="modal-tab" id="tabAdmin" onclick="switchAuthTab('admin')">Admin Portal</div>
+      </div>
+
+      <form id="userAuthForm" onsubmit="handleUserLogin(event)">
+        <h4 style="margin-bottom: 1rem;">Welcome to AquaPure</h4>
+        <input type="text" id="loginUserIdentifier" placeholder="Your Name or Phone" required style="width:100%; padding:0.8rem; margin-bottom:1rem; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-color); color:var(--text-color);" />
+        <input type="password" id="loginUserPass" placeholder="Password" required style="width:100%; padding:0.8rem; margin-bottom:1.2rem; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-color); color:var(--text-color);" />
+        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Sign In as Customer</button>
+      </form>
+
+      <form id="adminAuthForm" style="display: none;" onsubmit="handleAdminLogin(event)">
+        <h4 style="margin-bottom: 1rem; color: #dc2626;"><i class="fa-solid fa-lock"></i> AquaPure Admin Panel</h4>
+        <input type="text" id="adminUserIdentifier" placeholder="Admin ID / Username" required style="width:100%; padding:0.8rem; margin-bottom:1rem; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-color); color:var(--text-color);" />
+        <input type="password" id="adminSecretKey" placeholder="Admin Secret Key" required style="width:100%; padding:0.8rem; margin-bottom:1.2rem; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-color); color:var(--text-color);" />
+        <button type="submit" class="btn btn-primary" style="width: 100%; background: #dc2626; justify-content: center;">Admin Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Smart Calling Modal for PC / Laptop -->
+  <div class="modal-overlay" id="smartCallModal">
+    <div class="modal-box" style="text-align: center;">
+      <button class="close-modal" onclick="closeSmartCallModal()"><i class="fa-solid fa-xmark"></i></button>
+      <div style="width:65px; height:65px; border-radius:50%; background:rgba(2,132,199,0.1); color:var(--primary-color); display:flex; align-items:center; justify-content:center; font-size:1.8rem; margin:0 auto 1.2rem auto;">
+        <i class="fa-solid fa-phone-volume"></i>
+      </div>
+      <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 0.3rem;">Call AquaPure Support</h3>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">Number: <strong>+91 9201767987</strong></p>
+      
+      <div style="display: flex; flex-direction: column; gap: 0.9rem;">
+        <a href="https://wa.me/919201767987?text=Hello%20AquaPure,%20I%20am%20calling%20regarding%20drinking%20water." target="_blank" class="btn btn-whatsapp" style="justify-content: center; width: 100%;">
+          <i class="fa-brands fa-whatsapp"></i> Voice Call / Chat on WhatsApp
+        </a>
+        <button class="btn btn-primary" onclick="copyContactNumber('9201767987')" style="justify-content: center; width: 100%;">
+          <i class="fa-regular fa-copy"></i> Copy Number to Clipboard
+        </button>
+        <a href="tel:+919201767987" class="btn" style="background:var(--bg-color); border:1px solid var(--border-color); color:var(--text-color); justify-content: center; width: 100%;">
+          <i class="fa-solid fa-desktop"></i> Try PC Default App (Skype / Phone Link)
+        </a>
+      </div>
+    </div>
+  </div>
+<script src="app.js"></script>
+</body>
+</html>
